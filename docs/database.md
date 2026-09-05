@@ -55,7 +55,7 @@ erDiagram
         varchar user_id "Discord snowflake"
         varchar username
         uuid game_id FK
-        varchar category "kritik/saran/bug/feedback/complaint"
+        varchar category "critique/suggestion/bug/feedback/complaint"
         text message
         varchar status "new/reviewed/resolved/archived"
         boolean synced_to_sheets

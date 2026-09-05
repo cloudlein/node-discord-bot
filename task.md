@@ -14,11 +14,11 @@
 | Metric | Target | Current Value |
 |---|---|---|
 | Total Engineering Tasks | 95 | 95 |
-| Completed Tasks | 0 | 14 |
+| Completed Tasks | 0 | 13 |
 | In Progress | 0 | 1 |
-| Pending | 95 | 80 |
+| Pending | 95 | 81 |
 | Blocked | 0 | 0 |
-| Execution Completion | 100% | 14.7% |
+| Execution Completion | 100% | 13.7% |
 
 ### Task State Indicators
 - `[ ]` **Pending** — Defined in specification, queued for implementation
@@ -46,14 +46,14 @@
 > Core configuration, package setup, shared domain primitives, common error handling, and database baseline.  
 > References: [README.md](README.md), [Project Structure](docs/project-structure.md), [Security Guidelines](docs/security.md), [Database Architecture](docs/database.md)
 
-- [ ] **0.1 Package Management and Build Pipeline**
-  - [ ] Initialize `package.json` with production and development dependencies (via Bun):
+- [x] **0.1 Package Management and Build Pipeline**
+  - [x] Initialize `package.json` with production and development dependencies (via Bun):
     - Production: `discord.js`, `@supabase/supabase-js`, `express`, `zod`, `dotenv`, `winston`, `node-cron`, `googleapis`, `axios`, `cors`, `helmet`
     - Development: `typescript`, `@types/bun`, `@types/express`, `@types/cors`, `@types/node-cron`, `eslint`, `prettier`
-  - [ ] Configure `tsconfig.json` with strict type checking, ES2022 target, NodeNext module resolution, and path aliases
-  - [ ] Configure code quality configurations (`.eslintrc.json`, `.prettierrc`, and `.editorconfig`)
-  - [ ] Configure Vitest test runner (`vitest.config.ts`) with coverage thresholds and mock isolation
-  - [ ] Review `.gitignore` and `.env.example` to ensure full compliance with secret protection standards
+  - [x] Configure `tsconfig.json` with strict type checking, ES2022 target, NodeNext module resolution, and path aliases
+  - [x] Configure code quality configurations (`.eslintrc.json`, `.prettierrc`, and `.editorconfig`)
+  - [x] Configure Vitest test runner (`vitest.config.ts`) with coverage thresholds and mock isolation
+  - [x] Review `.gitignore` and `.env.example` to ensure full compliance with secret protection standards
 
 - [ ] **0.2 Central Configuration and Environment Validation**
   - [ ] Implement `src/config/constants.ts` for immutable system enums, rate limits, and default configurations
@@ -230,7 +230,7 @@
   - [x] `supabase/migrations/004_create_feedback.sql` — Schema definition for `feedback` table covering the five defined categories
 
 - [ ] **4.2 Domain Types & Errors**
-  - [ ] `src/shared/types/feedback.ts` — Feedback entity models, categorization enums (`kritik`, `saran`, `bug`, `feedback`, `complaint`), and DTOs
+  - [ ] `src/shared/types/feedback.ts` — Feedback entity models, categorization enums (`critique`, `suggestion`, `bug`, `feedback`, `complaint`), and DTOs
   - [ ] `src/shared/errors/integration.error.ts` (extended) — `GoogleSheetsError` (HTTP 502)
 
 - [ ] **4.3 Core Feedback Module (`src/modules/feedback/`)**

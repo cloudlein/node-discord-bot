@@ -10,8 +10,8 @@ The bot ingests user feedback across 5 formal classifications:
 
 | Category | Description | Typical Use Case |
 |---|---|---|
-| `kritik` | Constructive critique | Community feedback regarding game mechanics or rules |
-| `saran` | Feature suggestions | Player ideas for content updates or bot improvements |
+| `critique` | Constructive critique | Community feedback regarding game mechanics or rules |
+| `suggestion` | Feature suggestions | Player ideas for content updates or bot improvements |
 | `bug` | Bug reports | Error descriptions, steps to reproduce, glitches |
 | `feedback` | General feedback | General impressions and satisfaction reports |
 | `complaint` | Grievances | Player complaints regarding service or account issues |
@@ -49,7 +49,7 @@ Each feedback entry is synced to a dedicated Google Sheet with the following for
 |---|---|---|
 | ID | `feedback.id` | UUID string |
 | Timestamp | `feedback.created_at` | ISO 8601 |
-| Category | `feedback.category` | kritik / saran / bug / feedback / complaint |
+| Category | `feedback.category` | critique / suggestion / bug / feedback / complaint |
 | Game | `games.name` | Resolved from foreign key `game_id` |
 | Username | `feedback.username` | Discord username |
 | Message | `feedback.message` | Full text submitted by user |

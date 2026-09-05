@@ -3,7 +3,7 @@ CREATE TABLE feedback (
     user_id VARCHAR(100) NOT NULL,
     username VARCHAR(255) NOT NULL,
     game_id UUID REFERENCES games(id) ON DELETE SET NULL,
-    category VARCHAR(50) NOT NULL CHECK (category IN ('kritik', 'saran', 'bug', 'feedback', 'complaint')),
+    category VARCHAR(50) NOT NULL CHECK (category IN ('critique', 'suggestion', 'bug', 'feedback', 'complaint')),
     message TEXT NOT NULL,
     status VARCHAR(50) NOT NULL DEFAULT 'new' CHECK (status IN ('new', 'reviewed', 'resolved', 'archived')),
     synced_to_sheets BOOLEAN NOT NULL DEFAULT false,
