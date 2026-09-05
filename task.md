@@ -3,7 +3,7 @@
 > Implementation and tracking specification for the Game Community Bot platform.  
 > Primary Specification: [README.md](README.md)  
 > Architecture: Modular Clean Architecture with Hexagonal (Ports and Adapters) Boundaries  
-> Core Runtime: Node.js (v20+ LTS), TypeScript, Discord.js, Supabase (PostgreSQL), Express.js, Vitest, Winston, Zod
+> Core Runtime: Bun (v1.0+), TypeScript, Discord.js, Supabase (PostgreSQL), Express.js, Vitest/Bun Test, Winston, Zod
 
 ---
 
@@ -14,11 +14,11 @@
 | Metric | Target | Current Value |
 |---|---|---|
 | Total Engineering Tasks | 95 | 95 |
-| Completed Tasks | 0 | 0 |
-| In Progress | 0 | 0 |
-| Pending | 95 | 95 |
+| Completed Tasks | 0 | 14 |
+| In Progress | 0 | 1 |
+| Pending | 95 | 80 |
 | Blocked | 0 | 0 |
-| Execution Completion | 100% | 0.0% |
+| Execution Completion | 100% | 14.7% |
 
 ### Task State Indicators
 - `[ ]` **Pending** — Defined in specification, queued for implementation
@@ -46,9 +46,9 @@
 > References: [README.md](README.md), [Project Structure](docs/project-structure.md), [Security Guidelines](docs/security.md)
 
 - [ ] **1.1 Package Management and Build Pipeline**
-  - [ ] Initialize `package.json` with production and development dependencies:
+  - [ ] Initialize `package.json` with production and development dependencies (via Bun):
     - Production: `discord.js`, `@supabase/supabase-js`, `express`, `zod`, `dotenv`, `winston`, `node-cron`, `googleapis`, `axios`, `cors`, `helmet`
-    - Development: `typescript`, `tsx`, `vitest`, `@types/node`, `@types/express`, `@types/cors`, `@types/node-cron`, `eslint`, `prettier`
+    - Development: `typescript`, `@types/bun`, `@types/express`, `@types/cors`, `@types/node-cron`, `eslint`, `prettier`
   - [ ] Configure `tsconfig.json` with strict type checking, ES2022 target, NodeNext module resolution, and path aliases
   - [ ] Configure code quality configurations (`.eslintrc.json`, `.prettierrc`, and `.editorconfig`)
   - [ ] Configure Vitest test runner (`vitest.config.ts`) with coverage thresholds and mock isolation
@@ -64,27 +64,27 @@
 ## Phase 2: Database Architecture and Supabase Migrations
 > References: [Database Architecture and Schema](docs/database.md)
 
-- [ ] **2.1 Core Domain Schema Migrations**
-  - [ ] `supabase/migrations/001_create_games.sql` — Schema definition for `games` table with unique slug constraint
-  - [ ] `supabase/migrations/002_create_news.sql` — Schema definition for `news` table with `external_id` deduplication index
-  - [ ] `supabase/migrations/003_create_news_publications.sql` — Schema definition for `news_publications` table tracking delivery per platform
-  - [ ] `supabase/migrations/004_create_feedback.sql` — Schema definition for `feedback` table covering the five defined categories
-  - [ ] `supabase/migrations/005_create_moderation_logs.sql` — Schema definition for `moderation_logs` audit repository
+- [x] **2.1 Core Domain Schema Migrations**
+  - [x] `supabase/migrations/001_create_games.sql` — Schema definition for `games` table with unique slug constraint
+  - [x] `supabase/migrations/002_create_news.sql` — Schema definition for `news` table with `external_id` deduplication index
+  - [x] `supabase/migrations/003_create_news_publications.sql` — Schema definition for `news_publications` table tracking delivery per platform
+  - [x] `supabase/migrations/004_create_feedback.sql` — Schema definition for `feedback` table covering the five defined categories
+  - [x] `supabase/migrations/005_create_moderation_logs.sql` — Schema definition for `moderation_logs` audit repository
 
-- [ ] **2.2 Configuration and Authorization Migrations**
-  - [ ] `supabase/migrations/006_create_guild_configs.sql` — Schema definition for `guild_configs` table
-  - [ ] `supabase/migrations/007_create_channel_mappings.sql` — Schema definition for `channel_mappings` table with composite unique constraint `(guild_id, game_id, purpose)`
-  - [ ] `supabase/migrations/008_create_platform_configs.sql` — Schema definition for `platform_configs` table with JSONB settings
-  - [ ] `supabase/migrations/009_create_bad_words.sql` — Schema definition for `bad_words` dictionary table
-  - [ ] `supabase/migrations/010_create_admin_users.sql` — Schema definition for `admin_users` table storing SHA-256 API key hashes
+- [x] **2.2 Configuration and Authorization Migrations**
+  - [x] `supabase/migrations/006_create_guild_configs.sql` — Schema definition for `guild_configs` table
+  - [x] `supabase/migrations/007_create_channel_mappings.sql` — Schema definition for `channel_mappings` table with composite unique constraint `(guild_id, game_id, purpose)`
+  - [x] `supabase/migrations/008_create_platform_configs.sql` — Schema definition for `platform_configs` table with JSONB settings
+  - [x] `supabase/migrations/009_create_bad_words.sql` — Schema definition for `bad_words` dictionary table
+  - [x] `supabase/migrations/010_create_admin_users.sql` — Schema definition for `admin_users` table storing SHA-256 API key hashes
 
-- [ ] **2.3 Background Job and Queue Migrations**
-  - [ ] `supabase/migrations/011_create_scheduled_news.sql` — Schema definition for `scheduled_news` queue
-  - [ ] `supabase/migrations/012_create_retry_jobs.sql` — Schema definition for `retry_jobs` resilient queue
+- [x] **2.3 Background Job and Queue Migrations**
+  - [x] `supabase/migrations/011_create_scheduled_news.sql` — Schema definition for `scheduled_news` queue
+  - [x] `supabase/migrations/012_create_retry_jobs.sql` — Schema definition for `retry_jobs` resilient queue
 
-- [ ] **2.4 Database Security and Seeding**
-  - [ ] Apply default-deny Row Level Security (RLS) policies across all 12 PostgreSQL tables
-  - [ ] Establish composite B-tree indexes as specified in the database performance guidelines
+- [/] **2.4 Database Security and Seeding**
+  - [x] Apply default-deny Row Level Security (RLS) policies across all 12 PostgreSQL tables
+  - [x] Establish composite B-tree indexes as specified in the database performance guidelines
   - [ ] Implement `scripts/seed.ts` providing baseline game registries, default moderation lexicons, and initial admin accounts
 
 ---

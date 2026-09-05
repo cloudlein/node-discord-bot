@@ -9,9 +9,9 @@ This guide covers preparing, containerizing, running, and monitoring the Game Co
 - [ ] Set `NODE_ENV=production`.
 - [ ] Configure all mandatory variables in `.env` (Discord tokens, Supabase service keys, API secrets).
 - [ ] Execute all Supabase database migrations (`001_create_games.sql` through `012_create_retry_jobs.sql`).
-- [ ] Deploy Discord application slash commands (`npm run deploy-commands`).
-- [ ] Compile TypeScript into JavaScript bundle (`npm run build`).
-- [ ] Initialize process manager (PM2 or systemd) for high-availability restarts.
+- [ ] Deploy Discord application slash commands (`bun run deploy-commands`).
+- [ ] Compile TypeScript into JavaScript bundle (`bun run build`).
+- [ ] Initialize process manager (systemd, PM2, or Docker) for high-availability restarts.
 - [ ] Place the Express REST API behind a reverse proxy (e.g., Nginx, Cloudflare, Caddy) with HTTPS enabled.
 - [ ] Enable log aggregation and uptime monitoring for `/api/v1/health`.
 
@@ -19,26 +19,26 @@ This guide covers preparing, containerizing, running, and monitoring the Game Co
 
 ## Container Deployment (Docker)
 
-Use the multi-stage `Dockerfile` below for minimal image footprint and hardened runtime security:
+Use the multi-stage `Dockerfile` below for minimal image footprint and hardened runtime security using Bun:
 
 ```dockerfile
 # Stage 1: Build
-FROM node:20-alpine AS builder
+FROM oven/bun:1-alpine AS builder
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
+COPY package.json bun.lock* ./
+RUN bun install --frozen-lockfile
 COPY . .
-RUN npm run build
+RUN bun run build
 
 # Stage 2: Production Runtime
-FROM node:20-alpine
+FROM oven/bun:1-alpine
 WORKDIR /app
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./
 ENV NODE_ENV=production
-USER node
-CMD ["node", "dist/index.js"]
+USER bun
+CMD ["bun", "run", "dist/index.js"]
 ```
 
 Build and execute container:

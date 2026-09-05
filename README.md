@@ -1,6 +1,6 @@
 # Game Community Bot
 
-A production-ready, modular game community management platform built with **Node.js**, **TypeScript**, **Discord.js**, and **Supabase**. Features multi-platform news publishing, AI-powered moderation, customer feedback management, and a RESTful API — all designed with clean architecture principles.
+A production-ready, modular game community management platform built with **Bun**, **TypeScript**, **Discord.js**, and **Supabase**. Features multi-platform news publishing, AI-powered moderation, customer feedback management, and a RESTful API — all designed with clean architecture principles.
 
 ---
 
@@ -204,9 +204,8 @@ Detailed specifications for individual subsystems are documented in `docs/`:
 
 ### Prerequisites
 
-- **Node.js** 20+ LTS
-- **npm** 9+
-- **Supabase** project (free tier works)
+- **Bun** 1.0+
+- **Supabase** project (free tier works) or local Docker instance
 - **Discord Bot** application token ([Discord Developer Portal](https://discord.com/developers/applications))
 
 ### Quick Start
@@ -217,7 +216,7 @@ git clone https://github.com/your-org/game-community-bot.git
 cd game-community-bot
 
 # 2. Install dependencies
-npm install
+bun install
 
 # 3. Configure environment variables
 cp .env.example .env
@@ -225,13 +224,13 @@ cp .env.example .env
 
 # 4. Apply database migrations
 # Run SQL files in supabase/migrations/*.sql via Supabase dashboard or CLI:
-npx supabase db push
+bunx supabase db push
 
 # 5. Register Discord slash commands
-npm run deploy-commands
+bun run deploy-commands
 
 # 6. Start in development mode
-npm run dev
+bun run dev
 ```
 
 ---
@@ -275,36 +274,36 @@ API_SECRET_KEY=your_secret_key_for_signing
 
 | Script | Description |
 |---|---|
-| `npm run dev` | Start bot and REST API in watch mode (`tsx watch`) |
-| `npm run dev:api` | Start only the Express REST API server |
-| `npm run dev:bot` | Start only the Discord bot client |
-| `npm run build` | Compile TypeScript into production bundle in `dist/` |
-| `npm run start` | Run compiled JavaScript output |
-| `npm run deploy-commands` | Register slash commands with Discord API |
-| `npm run seed` | Populate database with initial games and configuration data |
-| `npm run typecheck` | Run TypeScript type checking (`tsc --noEmit`) |
-| `npm run lint` | Run ESLint static code analysis |
-| `npm run format` | Format codebase using Prettier |
-| `npm run test` | Run complete Vitest test suite |
+| `bun run dev` | Start bot and REST API in watch mode (`bun --watch src/index.ts`) |
+| `bun run dev:api` | Start only the Express REST API server |
+| `bun run dev:bot` | Start only the Discord bot client |
+| `bun run build` | Compile TypeScript into production bundle in `dist/` |
+| `bun run start` | Run compiled output (`bun dist/index.js`) |
+| `bun run deploy-commands` | Register slash commands with Discord API |
+| `bun run seed` | Populate database with initial games and configuration data |
+| `bun run typecheck` | Run TypeScript type checking (`tsc --noEmit`) |
+| `bun run lint` | Run ESLint static code analysis |
+| `bun run format` | Format codebase using Prettier |
+| `bun test` | Run complete test suite |
 
 ---
 
 ## Testing
 
-Testing is implemented with **Vitest** across three levels:
+Testing is implemented with **Bun Test** (or Vitest) across three levels:
 
 ```bash
 # Run all tests
-npm run test
+bun test
 
 # Run unit tests only
-npm run test:unit
+bun test tests/unit
 
 # Run integration tests only
-npm run test:integration
+bun test tests/integration
 
 # Generate code coverage report
-npm run test:coverage
+bun test --coverage
 ```
 
 All external dependencies (Supabase, Discord.js, Google Sheets, AI providers) are mocked via `tests/mocks/` to guarantee deterministic and isolated test runs.
@@ -342,7 +341,7 @@ All external dependencies (Supabase, Discord.js, Google Sheets, AI providers) ar
    - Adhere to [Conventional Commits](https://www.conventionalcommits.org/).
 3. Run verification before committing:
    ```bash
-   npm run typecheck && npm run lint && npm run test
+   bun run typecheck && bun run lint && bun test
    ```
 4. Open a Pull Request for review.
 
