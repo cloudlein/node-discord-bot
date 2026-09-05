@@ -18,6 +18,7 @@ A production-ready, modular game community management platform built with **Node
 - [Environment Variables](#environment-variables)
 - [Development & Scripts](#development--scripts)
 - [Testing](#testing)
+- [Project Tracking & Roadmap](task.md)
 - [Documentation Directory](#documentation-directory)
 - [Contributing](#contributing)
 - [License](#license)
@@ -325,6 +326,7 @@ All external dependencies (Supabase, Discord.js, Google Sheets, AI providers) ar
 | [Deployment Guide](docs/deployment.md) | Production checklist, multi-stage Dockerfile, PM2, and hosting |
 | [Security & Privacy](docs/security.md) | Secrets management, API authentication, Discord permissions, RLS |
 | [Error Handling & Observability](docs/error-handling-and-logging.md) | Error classes, centralized middleware, Winston structured logging |
+| [Project Tracking & Roadmap](task.md) | Engineering task backlog, phase milestones, and implementation tracking |
 
 ---
 
