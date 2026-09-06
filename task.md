@@ -14,11 +14,11 @@
 | Metric | Target | Current Value |
 |---|---|---|
 | Total Engineering Tasks | 95 | 95 |
-| Completed Tasks | 0 | 16 |
-| In Progress | 0 | 1 |
-| Pending | 95 | 78 |
+| Completed Tasks | 0 | 19 |
+| In Progress | 0 | 2 |
+| Pending | 95 | 74 |
 | Blocked | 0 | 0 |
-| Execution Completion | 100% | 16.8% |
+| Execution Completion | 100% | 20.0% |
 
 ### Task State Indicators
 - `[ ]` **Pending** — Defined in specification, queued for implementation
@@ -60,10 +60,10 @@
   - [x] Implement `src/config/index.ts` with Zod schema validation to guarantee fail-fast startup behavior on missing variables
   - [x] Implement `src/config/database.ts` delivering the Supabase client singleton backed by `SUPABASE_SERVICE_ROLE_KEY`
 
-- [ ] **0.3 Shared Domain Primitives and Error Taxonomy (`src/shared/`)**
+- [/] **0.3 Shared Domain Primitives and Error Taxonomy (`src/shared/`)**
   - [x] `src/shared/types/common.ts` — Generic API response envelope (`ApiResponse<T>`), pagination filters, and result containers
   - [x] `src/shared/types/database.ts` — Strongly typed database row definitions generated from Supabase schema
-  - [ ] `src/shared/types/index.ts` — Unified barrel export for common types
+  - [x] `src/shared/types/index.ts` — Unified barrel export for common types
   - [ ] `src/shared/errors/base.error.ts` — Base class `AppError` handling error codes, HTTP status mappings, and correlation metadata
   - [ ] `src/shared/errors/validation.error.ts` — `ValidationError` (HTTP 400)
   - [ ] `src/shared/errors/authentication.error.ts` — `AuthenticationError` (HTTP 401)
@@ -100,7 +100,7 @@
 > Manage registered games and Discord server channel mappings per purpose.  
 > References: [Database Architecture](docs/database.md), [Project Structure](docs/project-structure.md), [REST API](docs/api.md)
 
-- [ ] **1.1 Database Architecture**
+- [x] **1.1 Database Architecture**
   - [x] `supabase/migrations/001_create_games.sql` — Schema definition for `games` table with unique slug constraint
   - [x] `supabase/migrations/006_create_guild_configs.sql` — Schema definition for `guild_configs` table
   - [x] `supabase/migrations/007_create_channel_mappings.sql` — Schema definition for `channel_mappings` table with composite unique constraint `(guild_id, game_id, purpose)`
@@ -136,7 +136,7 @@
 > Ingest news from RSS/REST sources, manage draft lifecycles, deduplicate, schedule, and approve announcements.  
 > References: [Publishing](docs/publishing.md), [Background Jobs](docs/background-jobs.md), [REST API](docs/api.md)
 
-- [ ] **2.1 Database Architecture**
+- [x] **2.1 Database Architecture**
   - [x] `supabase/migrations/002_create_news.sql` — Schema definition for `news` table with `external_id` deduplication index
   - [x] `supabase/migrations/011_create_scheduled_news.sql` — Schema definition for `scheduled_news` queue
 
@@ -181,7 +181,7 @@
 > Fan-out news announcements across Discord, Instagram, X/Twitter, and Reddit with independent failure isolation.  
 > References: [Publishing](docs/publishing.md), [Background Jobs](docs/background-jobs.md), [REST API](docs/api.md)
 
-- [ ] **3.1 Database Architecture**
+- [x] **3.1 Database Architecture**
   - [x] `supabase/migrations/003_create_news_publications.sql` — Schema definition for `news_publications` table tracking delivery per platform
   - [x] `supabase/migrations/008_create_platform_configs.sql` — Schema definition for `platform_configs` table with JSONB settings
 
@@ -226,7 +226,7 @@
 > Intake user feedback across 5 categories via Discord modals or API, store in Supabase, and synchronize to Google Sheets.  
 > References: [Customer Service](docs/customer-service.md), [Database Architecture](docs/database.md)
 
-- [ ] **4.1 Database Architecture**
+- [x] **4.1 Database Architecture**
   - [x] `supabase/migrations/004_create_feedback.sql` — Schema definition for `feedback` table covering the five defined categories
 
 - [ ] **4.2 Domain Types & Errors**
@@ -270,7 +270,7 @@
 > Multi-stage content filtering pipeline: fast rule-based regex followed by AI semantic analysis, triggering automated actions.  
 > References: [Moderation](docs/moderation.md), [Database Architecture](docs/database.md)
 
-- [ ] **5.1 Database Architecture**
+- [x] **5.1 Database Architecture**
   - [x] `supabase/migrations/005_create_moderation_logs.sql` — Schema definition for `moderation_logs` audit repository
   - [x] `supabase/migrations/009_create_bad_words.sql` — Schema definition for `bad_words` dictionary table
 
@@ -307,7 +307,7 @@
 > Queue abstractions, exponential backoff with jitter, dead-letter tracking, and periodic job execution.  
 > References: [Background Jobs](docs/background-jobs.md), [Database Architecture](docs/database.md)
 
-- [ ] **6.1 Database Architecture**
+- [x] **6.1 Database Architecture**
   - [x] `supabase/migrations/012_create_retry_jobs.sql` — Schema definition for `retry_jobs` resilient queue
 
 - [ ] **6.2 Queue Ports and Abstractions (`src/jobs/queue/`)**
