@@ -14,11 +14,11 @@
 | Metric | Target | Current Value |
 |---|---|---|
 | Total Engineering Tasks | 95 | 95 |
-| Completed Tasks | 0 | 13 |
+| Completed Tasks | 0 | 16 |
 | In Progress | 0 | 1 |
-| Pending | 95 | 81 |
+| Pending | 95 | 78 |
 | Blocked | 0 | 0 |
-| Execution Completion | 100% | 13.7% |
+| Execution Completion | 100% | 16.8% |
 
 ### Task State Indicators
 - `[ ]` **Pending** — Defined in specification, queued for implementation
@@ -55,10 +55,10 @@
   - [x] Configure Vitest test runner (`vitest.config.ts`) with coverage thresholds and mock isolation
   - [x] Review `.gitignore` and `.env.example` to ensure full compliance with secret protection standards
 
-- [ ] **0.2 Central Configuration and Environment Validation**
-  - [ ] Implement `src/config/constants.ts` for immutable system enums, rate limits, and default configurations
-  - [ ] Implement `src/config/index.ts` with Zod schema validation to guarantee fail-fast startup behavior on missing variables
-  - [ ] Implement `src/config/database.ts` delivering the Supabase client singleton backed by `SUPABASE_SERVICE_ROLE_KEY`
+- [x] **0.2 Central Configuration and Environment Validation**
+  - [x] Implement `src/config/constants.ts` for immutable system enums, rate limits, and default configurations
+  - [x] Implement `src/config/index.ts` with Zod schema validation to guarantee fail-fast startup behavior on missing variables
+  - [x] Implement `src/config/database.ts` delivering the Supabase client singleton backed by `SUPABASE_SERVICE_ROLE_KEY`
 
 - [ ] **0.3 Shared Domain Primitives and Error Taxonomy (`src/shared/`)**
   - [ ] `src/shared/types/common.ts` — Generic API response envelope (`ApiResponse<T>`), pagination filters, and result containers
