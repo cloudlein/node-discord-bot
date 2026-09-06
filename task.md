@@ -61,8 +61,8 @@
   - [x] Implement `src/config/database.ts` delivering the Supabase client singleton backed by `SUPABASE_SERVICE_ROLE_KEY`
 
 - [ ] **0.3 Shared Domain Primitives and Error Taxonomy (`src/shared/`)**
-  - [ ] `src/shared/types/common.ts` — Generic API response envelope (`ApiResponse<T>`), pagination filters, and result containers
-  - [ ] `src/shared/types/database.ts` — Strongly typed database row definitions generated from Supabase schema
+  - [x] `src/shared/types/common.ts` — Generic API response envelope (`ApiResponse<T>`), pagination filters, and result containers
+  - [x] `src/shared/types/database.ts` — Strongly typed database row definitions generated from Supabase schema
   - [ ] `src/shared/types/index.ts` — Unified barrel export for common types
   - [ ] `src/shared/errors/base.error.ts` — Base class `AppError` handling error codes, HTTP status mappings, and correlation metadata
   - [ ] `src/shared/errors/validation.error.ts` — `ValidationError` (HTTP 400)
